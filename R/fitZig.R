@@ -52,7 +52,8 @@ function(obj,mod,zeroMod=NULL,useCSSoffset=TRUE,control=zigControl()){
 
 # Initialization
 	tol = control$tol;
-	maxit     = control$maxit;
+	#maxit     = control$maxit;
+	maxit = 2
 	verbose   = control$verbose;
 	
 	stopifnot( is( obj, "MRexperiment" ) )
@@ -96,7 +97,7 @@ function(obj,mod,zeroMod=NULL,useCSSoffset=TRUE,control=zigControl()){
 	
 	modRank=ncol(mmCount);
 # E-M Algorithm
-	while(any(stillActive) && curIt<maxit) {
+	while(any(stillActive) && curIt<2) {
 	
 # M-step for count density (each feature independently)
 		if(curIt==0){
