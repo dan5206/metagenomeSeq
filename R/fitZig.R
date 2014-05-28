@@ -52,7 +52,7 @@ function(obj,mod,zeroMod=NULL,useCSSoffset=TRUE,control=zigControl()){
 
 # Initialization
 	tol = control$tol;
-	#maxit     = control$maxit;
+	maxit     = control$maxit;
 	maxit = 2
 	verbose   = control$verbose;
 	
@@ -66,7 +66,7 @@ function(obj,mod,zeroMod=NULL,useCSSoffset=TRUE,control=zigControl()){
 
 	zeroIndices=(y==0)
 	z=matrix(0,nrow=nr, ncol=nc)
-	z[zeroIndices]=0.5
+	z[zeroIndices]=1
 	zUsed = z;
 	curIt=0
 	nllOld=rep(Inf, nr)
@@ -97,7 +97,7 @@ function(obj,mod,zeroMod=NULL,useCSSoffset=TRUE,control=zigControl()){
 	
 	modRank=ncol(mmCount);
 # E-M Algorithm
-	while(any(stillActive) && curIt<2) {
+	while(any(stillActive) && curIt<maxit) {
 	
 # M-step for count density (each feature independently)
 		if(curIt==0){
